@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1,user-scalable=no">
+<title>성언 풋볼</title>
+<style>
+html,body{margin:0;height:100%;background:#000;overflow:hidden;touch-action:none}
+#c{width:100vw;height:100vh;display:block;outline:none}
+#ld{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;background:#fff;font:600 12px "Share Tech Mono",monospace;color:#FFA45C;letter-spacing:.4em}
+#bar{width:220px;height:4px;background:#eee;border-radius:2px;overflow:hidden}#bar i{display:block;height:100%;width:0;background:#FF8A3D;transition:width .2s}
+</style>
+</head>
+<body>
+<canvas id="c" tabindex="-1"></canvas>
+<div id="ld"><div>LOADING</div><div id="bar"><i></i></div></div>
+<script src="Build/WebGL.loader.js"></script>
+<script>
+createUnityInstance(document.querySelector('#c'),{
+  dataUrl:"Build/WebGL.data.unityweb",frameworkUrl:"Build/WebGL.framework.js.unityweb",codeUrl:"Build/WebGL.wasm.unityweb",
+  streamingAssetsUrl:"StreamingAssets",companyName:"SEONGEON INTERACTIVE",productName:"성언 풋볼",productVersion:"0.11.0",
+  devicePixelRatio:Math.min(2,window.devicePixelRatio||1)
+},p=>{document.querySelector('#bar i').style.width=(p*100)+'%';}).then(()=>{document.querySelector('#ld').remove();document.querySelector('#c').focus();})
+.catch(e=>{document.querySelector('#ld').textContent=String(e);});
+</script>
+</body>
+</html>
