@@ -34,11 +34,11 @@ body{position:fixed;inset:0}
   document.addEventListener('gesturestart',function(e){ e.preventDefault(); });               // 두 손가락 확대 막기
 })();
 </script>
-<script src="Build/WebGL.loader.js?v=0.12.2"></script>
+<script src="Build/WebGL.loader.js?v=0.13.0"></script>
 <script>
 createUnityInstance(document.querySelector('#c'),{
-  dataUrl:"Build/WebGL.data.unityweb?v=0.12.2",frameworkUrl:"Build/WebGL.framework.js.unityweb?v=0.12.2",codeUrl:"Build/WebGL.wasm.unityweb?v=0.12.2",
-  streamingAssetsUrl:"StreamingAssets",companyName:"SEONGEON INTERACTIVE",productName:"성언 풋볼",productVersion:"0.12.2",
+  dataUrl:"Build/WebGL.data.unityweb?v=0.13.0",frameworkUrl:"Build/WebGL.framework.js.unityweb?v=0.13.0",codeUrl:"Build/WebGL.wasm.unityweb?v=0.13.0",
+  streamingAssetsUrl:"StreamingAssets",companyName:"SEONGEON INTERACTIVE",productName:"성언 풋볼",productVersion:"0.13.0",
   devicePixelRatio:Math.min(2,window.devicePixelRatio||1)
 },p=>{document.querySelector('#bar i').style.width=(p*100)+'%';}).then(inst=>{window.u=inst;document.querySelector('#ld').remove();document.querySelector('#c').focus();})
 .catch(e=>{document.querySelector('#ld').textContent=String(e);});
