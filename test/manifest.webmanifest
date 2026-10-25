@@ -1,0 +1,28 @@
+{
+    "name":  "성언 풋볼",
+    "short_name":  "성언 풋볼",
+    "start_url":  "./",
+    "scope":  "./",
+    "display":  "standalone",
+    "display_override":  [
+                             "fullscreen",
+                             "standalone"
+                         ],
+    "orientation":  "landscape",
+    "background_color":  "#050608",
+    "theme_color":  "#050608",
+    "icons":  [
+                  {
+                      "purpose":  "any",
+                      "type":  "image/png",
+                      "sizes":  "192x192",
+                      "src":  "icon-192.png"
+                  },
+                  {
+                      "purpose":  "any maskable",
+                      "type":  "image/png",
+                      "sizes":  "512x512",
+                      "src":  "icon-512.png"
+                  }
+              ]
+}

@@ -6,6 +6,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-title" content="성언 풋볼">
 <title>성언 풋볼</title>
 <style>
@@ -30,15 +33,24 @@ body{position:fixed;inset:0}
     c.style.width=w+'px'; c.style.height=h+'px'; c.style.top=top+'px'; c.style.left=left+'px'; window.scrollTo(0,0); }
   fit(); window.addEventListener('resize',fit); window.addEventListener('orientationchange',function(){ setTimeout(fit,250); });
   if(window.visualViewport){ window.visualViewport.addEventListener('resize',fit); window.visualViewport.addEventListener('scroll',fit); }
+  var coarse=window.matchMedia('(pointer: coarse)').matches;
+  var standalone=window.matchMedia('(display-mode: standalone)').matches||window.matchMedia('(display-mode: fullscreen)').matches||navigator.standalone===true;
+  function immersive(){
+    if(!coarse&&!standalone) return;
+    if(!standalone&&c.requestFullscreen){ var fs=c.requestFullscreen(); if(fs&&fs.catch) fs.catch(function(){}); }
+    if(screen.orientation&&screen.orientation.lock){ var lock=screen.orientation.lock('landscape'); if(lock&&lock.catch) lock.catch(function(){}); }
+  }
+  c.addEventListener('pointerdown',immersive,{once:true});
+  c.addEventListener('touchstart',immersive,{once:true,passive:true});
   document.addEventListener('touchmove',function(e){ e.preventDefault(); },{passive:false});   // 페이지가 통째로 끌려 움직이지 않게
   document.addEventListener('gesturestart',function(e){ e.preventDefault(); });               // 두 손가락 확대 막기
 })();
 </script>
-<script src="Build/WebGL.loader.js?v=0.13.0"></script>
+<script src="Build/WebGL.loader.js?v=0.15.0"></script>
 <script>
 createUnityInstance(document.querySelector('#c'),{
-  dataUrl:"Build/WebGL.data.unityweb?v=0.13.0",frameworkUrl:"Build/WebGL.framework.js.unityweb?v=0.13.0",codeUrl:"Build/WebGL.wasm.unityweb?v=0.13.0",
-  streamingAssetsUrl:"StreamingAssets",companyName:"SEONGEON INTERACTIVE",productName:"성언 풋볼",productVersion:"0.13.0",
+  dataUrl:"Build/WebGL.data.unityweb?v=0.15.0",frameworkUrl:"Build/WebGL.framework.js.unityweb?v=0.15.0",codeUrl:"Build/WebGL.wasm.unityweb?v=0.15.0",
+  streamingAssetsUrl:"StreamingAssets",companyName:"SEONGEON INTERACTIVE",productName:"성언 풋볼",productVersion:"0.15.0",
   devicePixelRatio:Math.min(2,window.devicePixelRatio||1)
 },p=>{document.querySelector('#bar i').style.width=(p*100)+'%';}).then(inst=>{window.u=inst;document.querySelector('#ld').remove();document.querySelector('#c').focus();})
 .catch(e=>{document.querySelector('#ld').textContent=String(e);});
