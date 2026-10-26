@@ -33,8 +33,15 @@ body{position:fixed;inset:0}
 <div id="ld"><div>LOADING</div><div id="bar"><i></i></div></div>
 <script>
 (function(){ var c=document.getElementById('c');
+  /* 아이패드 · 아이폰 사파리(iOS 26): 화면 맨 위 상태바 아래 줄을 흐릿하게 덮는 효과가 있음 → 게임 화면(위쪽 메뉴 글자)이 흐려 보였음
+     그 줄만큼 캔버스를 아래로 내리고, 그 자리는 어두운 색으로 채움 (홈 화면에 추가해서 열면 필요 없음) */
+  var iosS=(/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1))&&!(navigator.standalone===true||window.matchMedia('(display-mode: standalone)').matches);
+  var probe=document.createElement('div'); probe.style.cssText='position:fixed;top:0;left:0;width:0;height:env(safe-area-inset-top);visibility:hidden;pointer-events:none'; document.body.appendChild(probe);
+  var shade=document.getElementById('topshade');
   function fit(){ var vv=window.visualViewport; var w=vv?vv.width:window.innerWidth, h=vv?vv.height:window.innerHeight; var top=vv?vv.offsetTop:0, left=vv?vv.offsetLeft:0;
-    c.style.width=w+'px'; c.style.height=h+'px'; c.style.top=top+'px'; c.style.left=left+'px'; window.scrollTo(0,0); }
+    var pad=0; if(iosS){ var sa=probe.getBoundingClientRect().height||0; pad=Math.round(Math.max(sa,20)+22); }
+    if(shade) shade.style.height=(pad>0?pad:2)+'px';
+    c.style.width=w+'px'; c.style.height=(h-pad)+'px'; c.style.top=(top+pad)+'px'; c.style.left=left+'px'; window.scrollTo(0,0); }
   fit(); window.addEventListener('resize',fit); window.addEventListener('orientationchange',function(){ setTimeout(fit,250); });
   if(window.visualViewport){ window.visualViewport.addEventListener('resize',fit); window.visualViewport.addEventListener('scroll',fit); }
   var coarse=window.matchMedia('(pointer: coarse)').matches;
