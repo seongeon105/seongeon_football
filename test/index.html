@@ -10,10 +10,12 @@
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="apple-mobile-web-app-title" content="성언 풋볼">
-<meta name="theme-color" content="#050608">   <!-- 사파리 맨 위 상태바(시계 · 배터리) 줄을 흰색 대신 게임 배경색으로 -->
+<meta name="theme-color" content="#050608">
+<meta name="color-scheme" content="dark">   <!-- 사파리 위쪽 상태바 · 도구막대를 어두운 색으로 (밝은 테마면 흰색으로 나옴) -->   <!-- 사파리 맨 위 상태바(시계 · 배터리) 줄을 흰색 대신 게임 배경색으로 -->
 <title>성언 풋볼</title>
 <style>
 /* 아이패드 사파리: 100vh 는 주소창 · 탭 막대 밑까지 포함돼서 화면 아래가 잘렸음 → 실제로 보이는 크기(visualViewport)에 캔버스를 맞춤 */
+html{color-scheme:dark;background-color:#050608}
 html,body{margin:0;padding:0;width:100%;height:100%;background:#000;overflow:hidden;overscroll-behavior:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 body{position:fixed;inset:0}
 #c{position:fixed;left:0;top:0;width:100vw;height:100vh;height:100dvh;display:block;outline:none;touch-action:none}
@@ -27,6 +29,7 @@ body{position:fixed;inset:0}
 <body>
 <canvas id="c" tabindex="-1"></canvas>
 <div id="rot"><b>⟳</b><div>가로로 돌려 주세요</div><div style="font-weight:400;font-size:14px;opacity:.7">성언 풋볼은 가로 화면에서 해요</div></div>
+<div id="topshade" style="position:fixed;left:0;right:0;top:0;height:max(2px,env(safe-area-inset-top));background:#050608;z-index:8;pointer-events:none"></div>
 <div id="ld"><div>LOADING</div><div id="bar"><i></i></div></div>
 <script>
 (function(){ var c=document.getElementById('c');
@@ -49,11 +52,11 @@ body{position:fixed;inset:0}
   document.addEventListener('gesturestart',function(e){ e.preventDefault(); });               // 두 손가락 확대 막기
 })();
 </script>
-<script src="Build/WebGL.loader.js?v=0.16.0"></script>
+<script src="Build/WebGL.loader.js?v=0.16.1"></script>
 <script>
 createUnityInstance(document.querySelector('#c'),{
-  dataUrl:"Build/WebGL.data.unityweb?v=0.16.0",frameworkUrl:"Build/WebGL.framework.js.unityweb?v=0.16.0",codeUrl:"Build/WebGL.wasm.unityweb?v=0.16.0",
-  streamingAssetsUrl:"StreamingAssets",companyName:"SEONGEON INTERACTIVE",productName:"성언 풋볼",productVersion:"0.16.0",
+  dataUrl:"Build/WebGL.data.unityweb?v=0.16.1",frameworkUrl:"Build/WebGL.framework.js.unityweb?v=0.16.1",codeUrl:"Build/WebGL.wasm.unityweb?v=0.16.1",
+  streamingAssetsUrl:"StreamingAssets",companyName:"SEONGEON INTERACTIVE",productName:"성언 풋볼",productVersion:"0.16.1",
   devicePixelRatio:Math.min(2,window.devicePixelRatio||1)
 },p=>{document.querySelector('#bar i').style.width=(p*100)+'%';}).then(inst=>{window.u=inst;document.querySelector('#ld').remove();document.querySelector('#c').focus();})
 .catch(e=>{document.querySelector('#ld').textContent=String(e);});
