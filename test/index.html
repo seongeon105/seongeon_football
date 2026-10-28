@@ -19,11 +19,11 @@ html{color-scheme:dark;background-color:#050608}
 html,body{margin:0;padding:0;width:100%;height:100%;background:#000;overflow:hidden;overscroll-behavior:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 body{position:fixed;inset:0}
 #c{position:fixed;left:0;top:0;width:100vw;height:100vh;height:100dvh;display:block;outline:none;touch-action:none}
-#ld{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;background:#fff;font:600 12px "Share Tech Mono",monospace;color:#FFA45C;letter-spacing:.4em}
+#ld{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:16px;background:#050608;font:600 12px "Share Tech Mono",monospace;color:#FFA45C;letter-spacing:.4em}
 #rot{display:none;position:fixed;inset:0;z-index:9;background:#0A0B10;color:#F2F0EC;font:700 18px system-ui,sans-serif;align-items:center;justify-content:center;flex-direction:column;gap:14px;text-align:center}
 #rot b{font-size:44px}
 @media (orientation:portrait) and (pointer:coarse){#rot{display:flex}}
-#bar{width:220px;height:4px;background:#eee;border-radius:2px;overflow:hidden}#bar i{display:block;height:100%;width:0;background:#FF8A3D;transition:width .2s}
+#bar{width:220px;height:4px;background:#1c1f26;border-radius:2px;overflow:hidden}#bar i{display:block;height:100%;width:0;background:#FF8A3D;transition:width .2s}
 </style>
 </head>
 <body>
@@ -59,13 +59,13 @@ body{position:fixed;inset:0}
   document.addEventListener('gesturestart',function(e){ e.preventDefault(); });               // 두 손가락 확대 막기
 })();
 </script>
-<script src="Build/WebGL.loader.js?v=0.16.2"></script>
+<script src="Build/WebGL.loader.js?v=0.17.1"></script>
 <script>
 createUnityInstance(document.querySelector('#c'),{
-  dataUrl:"Build/WebGL.data.unityweb?v=0.16.2",frameworkUrl:"Build/WebGL.framework.js.unityweb?v=0.16.2",codeUrl:"Build/WebGL.wasm.unityweb?v=0.16.2",
-  streamingAssetsUrl:"StreamingAssets",companyName:"SEONGEON INTERACTIVE",productName:"성언 풋볼",productVersion:"0.16.2",
+  dataUrl:"Build/WebGL.data.unityweb?v=0.17.1",frameworkUrl:"Build/WebGL.framework.js.unityweb?v=0.17.1",codeUrl:"Build/WebGL.wasm.unityweb?v=0.17.1",
+  streamingAssetsUrl:"StreamingAssets",companyName:"SEONGEON INTERACTIVE",productName:"성언 풋볼",productVersion:"0.17.1",
   devicePixelRatio:Math.min(2,window.devicePixelRatio||1)
-},p=>{document.querySelector('#bar i').style.width=(p*100)+'%';}).then(inst=>{window.u=inst;document.querySelector('#ld').remove();document.querySelector('#c').focus();})
+},p=>{document.querySelector('#bar i').style.width=(p*100)+'%';}).then(inst=>{window.u=inst;document.querySelector('#ld').remove();var ts=document.getElementById('topshade');if(ts){ts.style.background='#050609';requestAnimationFrame(function(){ts.style.background='#050608';});}document.querySelector('#c').focus();})
 .catch(e=>{document.querySelector('#ld').textContent=String(e);});
 </script>
 </body>
